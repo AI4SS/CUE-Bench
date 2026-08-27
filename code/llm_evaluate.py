@@ -24,7 +24,7 @@ except ImportError:
 
 BASE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parent
-DATA_DIR = ROOT_DIR / "data" / "v3_experiment_split"
+DATA_DIR = ROOT_DIR / "data" / "paper_experimental_split"
 PROMPTS_DIR = ROOT_DIR / "prompts"
 RESULTS_DIR = ROOT_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)

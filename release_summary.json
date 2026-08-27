@@ -1,13 +1,13 @@
 {
   "version": "public_candidate",
-  "id_policy": "Public sample_id values are sequential release IDs. v3.1 source-specific files share the same sample_id values as cuebench_v3.1_full.jsonl.",
+  "id_policy": "Public sample_id values are sequential release IDs. refined-release source-specific files share the same sample_id values as cuebench_v3.1_full.jsonl.",
   "label_fields": [
     "affective_stance",
     "pragmatic_intent",
     "fine_grained_emotion"
   ],
   "files": {
-    "data/v3_experiment_split/train.jsonl": {
+    "data/paper_experimental_split/train.jsonl": {
       "total": 36685,
       "by_affective_stance": {
         "Sarcastic Negative": 4516,
@@ -58,7 +58,7 @@
         "Morbidness": 44
       }
     },
-    "data/v3_experiment_split/dev.jsonl": {
+    "data/paper_experimental_split/dev.jsonl": {
       "total": 5162,
       "by_affective_stance": {
         "Affiliative Positive": 238,
@@ -109,7 +109,7 @@
         "Awe": 1
       }
     },
-    "data/v3_experiment_split/test.jsonl": {
+    "data/paper_experimental_split/test.jsonl": {
       "total": 5163,
       "by_affective_stance": {
         "Positive": 834,
@@ -160,7 +160,7 @@
         "Awe": 2
       }
     },
-    "data/v3.1_final/cuebench_v3.1_full.jsonl": {
+    "data/refined_full_release/cuebench_v3.1_full.jsonl": {
       "total": 52882,
       "by_affective_stance": {
         "Veiled Negative": 11517,
@@ -211,7 +211,7 @@
         "Awe": 26
       }
     },
-    "data/v3.1_final/two_model_agreement.jsonl": {
+    "data/refined_full_release/two_model_agreement.jsonl": {
       "total": 24164,
       "by_affective_stance": {
         "Sarcastic Negative": 1642,
@@ -261,7 +261,7 @@
         "Dominance": 1
       }
     },
-    "data/v3.1_final/human_verified.jsonl": {
+    "data/refined_full_release/human_verified.jsonl": {
       "total": 9598,
       "by_affective_stance": {
         "Veiled Negative": 4202,
@@ -312,7 +312,7 @@
         "Awe": 3
       }
     },
-    "data/v3.1_final/gpt_adjudicated_after_disagreement.jsonl": {
+    "data/refined_full_release/gpt_adjudicated_after_disagreement.jsonl": {
       "total": 17855,
       "by_affective_stance": {
         "Sarcastic Negative": 2806,
@@ -363,7 +363,7 @@
         "Awe": 13
       }
     },
-    "data/v3.1_final/reportive_negative_expansion.jsonl": {
+    "data/refined_full_release/reportive_negative_expansion.jsonl": {
       "total": 1265,
       "by_affective_stance": {
         "Reportive Negative": 1265

@@ -4,7 +4,7 @@
   <a href="https://arxiv.org/abs/2608.10810">
     <img src="https://img.shields.io/badge/arXiv-2608.10810-b31b1b?style=flat-square">
   </a>
-  <a href="data/v3.1_final/cuebench_v3.1_full.jsonl">
+  <a href="data/refined_full_release/cuebench_v3.1_full.jsonl">
     <img src="https://img.shields.io/badge/Dataset-Refined%20Release-green?style=flat-square">
   </a>
   <a href="LICENSE">
@@ -14,7 +14,9 @@
 
 This repository contains the official data and evaluation resources for **CUE-Bench**, a Chinese discourse benchmark for understanding **unsaid emotion** through **Affective Stance**.
 
-![CUE-Bench Overview](docs/cuebench_overview.png)
+<p align="center">
+  <img src="docs/cuebench_overview.png" alt="CUE-Bench Overview" width="820">
+</p>
 
 > **Abstract.** Emotion understanding in discourse requires reasoning beyond surface sentiment, since speakers often convey affect through indirect, implicit, polite, ironic, or deliberately mismatched expressions. Existing emotion benchmarks mainly annotate surface polarity or final emotion categories, while lacking a structured account of how explicit expression, implicit affect, pragmatic intent, and fine-grained emotion interact. To address this gap, we introduce **CUE-Bench**, a Chinese Unsaid Emotion benchmark that centers on **Affective Stance** and covers diverse communicative scenarios. CUE-Bench constructs nine human-interpretable affective stances from Explicit-Implicit polarity interaction and further provides intent and fine-grained emotion annotations for structured affective inference.
 
@@ -35,8 +37,8 @@ This repository contains the official data and evaluation resources for **CUE-Be
 ```text
 CUE-Bench/
   data/
-    v3_experiment_split/      # experimental split used in the paper
-    v3.1_final/               # refined full release version
+    paper_experimental_split/ # experimental split used in the paper
+    refined_full_release/     # refined full release version
   prompts/                    # public task-level prompt templates
   code/                       # evaluation and metric scripts
   docs/                       # paper PDF
@@ -49,7 +51,7 @@ CUE-Bench/
 
 ### Paper Experimental Split
 
-`data/v3_experiment_split/` contains the split used for the paper experiments.
+`data/paper_experimental_split/` contains the split used for the paper experiments.
 
 | Split | File | #Samples |
 |---|---:|---:|
@@ -59,7 +61,7 @@ CUE-Bench/
 
 ### Refined Full Release
 
-`data/v3.1_final/` contains the refined full release prepared after the rebuttal-stage revisions. The source-specific files share the same `sample_id` values as `cuebench_v3.1_full.jsonl`.
+`data/refined_full_release/` contains the refined full release expanded from the paper experimental split. The source-specific files share the same `sample_id` values as `cuebench_v3.1_full.jsonl`.
 
 | File | Description | #Samples |
 |---|---|---:|
@@ -212,3 +214,4 @@ If you use CUE-Bench, please cite our paper:
 ## License
 
 This project is released under the MIT License. See [LICENSE](LICENSE) for details.
+
