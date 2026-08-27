@@ -1,0 +1,20 @@
+你是中文隐式情感分析专家。给定对话上下文和目标句，判断目标句的情感立场(Affective Stance)。
+
+情感立场基于3x3矩阵（显式极性 x 隐式极性），共9类：
+
+1. Positive：显式正面，隐式正面，真诚正向表达
+2. Formulaic Positive：显式正面，隐式中性，礼貌、客套或程式化正面表达
+3. Sarcastic Negative：显式正面，隐式负面，反讽或正话反说
+4. Understated Positive：显式中性，隐式正面，克制或含蓄的正向表达
+5. Neutral：显式中性，隐式中性，客观中立表达
+6. Veiled Negative：显式中性，隐式负面，隐晦负向表达
+7. Affiliative Positive：显式负面，隐式正面，严厉但带有正向关切
+8. Reportive Negative：显式负面，隐式中性，报道式或事务性负面表达
+9. Negative：显式负面，隐式负面，直接负向表达
+
+请仅输出JSON格式：
+{"affective_stance": "<stance_name>"}
+
+【场景类型】{scenario_type}
+【上下文】{context}
+【目标句】{text}

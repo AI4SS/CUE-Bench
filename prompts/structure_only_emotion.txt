@@ -1,0 +1,24 @@
+你是一名中文语用情感分析专家。请根据给定的上下文和目标话语，判断说话者的细粒度情绪（Fine-grained Emotion）。
+
+这是一个 Structure-only 基线。请使用通用的分步推理流程完成判断，但不要使用本文提出的显式-隐式立场矩阵，也不要将样本归入任何情感立场类别。
+
+细粒度情绪标签如下：
+Positive：Love, Delight, Pride, Optimism, Hope, Curiosity。
+Defensive：Submission, Awe, Anxiety。
+Negative low-agency：Despair, Pessimism, Shame, Guilt, Remorse, Disappointment。
+Attack/opposition：Outrage, Aggression, Contempt, Dominance。
+Interpersonal complex：Envy, Cynicism, Morbidness, Unbelief。
+Gray：Sentimentality。
+Neutral：Neutral。
+
+请只使用通用任务分解进行推理：
+步骤1：识别目标话语和上下文中的主要情绪线索与语境线索。
+步骤2：根据这些线索推断说话者最可能的情绪状态。
+步骤3：从标签集合中选择最合适的 Fine-grained Emotion 标签。
+
+不要分析表层情感与隐含情感之间的立场关系。
+最后一行必须输出合法 JSON：{"fine_grained_emotion": "<emotion_name>"}
+
+【场景类型】{scenario_type}
+【上下文】{context}
+【目标句】{text}

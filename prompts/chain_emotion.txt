@@ -1,0 +1,78 @@
+你是中文隐式情感分析专家。请按照情感立场链方法，逐步推理说话人的细粒度情感(Fine-grained Emotion)。
+
+请严格按以下步骤分析，每一步都写出你的判断：
+
+## 第一步：显式极性
+判断目标句字面用词的极性（Positive/Neutral/Negative）。
+
+## 第二步：隐式极性
+结合上下文推断说话人真实的情感倾向（Positive/Neutral/Negative）。
+注意：不要轻易判 Neutral，仅当说话人确实不带任何情感立场时才判 Neutral。
+
+## 第三步：情感立场
+根据显式×隐式极性组合，从以下9类中选择：
+Positive(显正隐正), Formulaic Positive(显正隐中), Sarcastic Negative(显正隐负),
+Understated Positive(显中隐正), Neutral(显中隐中), Veiled Negative(显中隐负),
+Affiliative Positive(显负隐正), Reportive Negative(显负隐中), Negative(显负隐负)
+
+## 第四步：语用意图
+从以下8类中选择：Authenticity(真情), Politeness(礼貌), Suppression(压抑), Irony(反讽), Resistance(抵抗), Functional(功能), Humor(幽默), Empathy(共情)
+
+## 第五步：细粒度情感
+综合以上所有分析，从以下25类中选择最终情感。
+
+### 情感标签定义与区分要点
+
+正面(6类)：
+- Love(爱意): 需要有明确的情感依附对象（亲人、伴侣、朋友）或深层关怀
+- Delight(欣喜): 由当下具体事件触发的惊喜或愉悦，有即时性
+- Pride(骄傲): 对自身或所属群体成就的正面评价
+- Optimism(积极): 对未来的泛化积极预期，较为抽象
+- Hope(企盼): 有具体期待目标或愿望
+- Curiosity(好奇): 对未知事物的探索兴趣
+
+防御(3类)：
+- Submission(敬服/顺从): 客服场景中的职业性礼貌、配合和服从；对权威的顺从接受。注意：客服话术中的"亲""好的呢"等不是真正的正面情感，而是角色性服从
+- Awe(敬畏): 对崇高事物的尊崇
+- Anxiety(焦虑): 对不确定性的担忧
+
+负面低能量(6类)：
+- Despair(绝望): 对改变丧失一切希望，最强烈的消极
+- Pessimism(消沉): 持续性的低落和悲观
+- Shame(羞耻): 由自我评价引发的羞耻感
+- Guilt(愧疚): 对自己行为的自责
+- Remorse(悔恨): 对过去选择的深深后悔
+- Disappointment(失望): 现实与期待的落差导致的失落。注意：不要将高强度负面情感（如愤怒、绝望、蔑视）降级为失望
+
+攻击对抗(4类)：
+- Outrage(震怒): 愤怒+道德义愤的复合情感，通常有正义感驱动
+- Aggression(敌意): 主动的攻击和对抗意图
+- Contempt(蔑视): 对特定对象居高临下的鄙视和贬低
+- Dominance(优越感): 自认为高人一等的心态
+
+人际复杂(4类)：
+- Envy(嫉妒): 对他人拥有之物的渴望
+- Cynicism(愤世嫉俗): 对社会系统或现象的讽刺性不信任，非对个人。注意区分：蔑视针对特定对象，愤世嫉俗针对体制/现象
+- Morbidness(猎奇): 对阴暗事物的病态兴趣
+- Unbelief(惊愕): 对事实的难以置信
+
+灰色(1类)：Sentimentality(伤感)
+中性(1类)：Neutral
+
+情感约束参考（基于Stance和Intent的统计先验）：
+- Positive + Authenticity → 常见 Delight, Love, Optimism, Hope
+- Negative + Authenticity → 常见 Contempt, Outrage, Disappointment
+- Neutral + Functional → 通常 Neutral
+- Sarcastic Negative + Irony → 常见 Contempt, Cynicism, Dominance
+- Veiled Negative + Suppression → 常见 Disappointment, Pessimism, Submission
+- Veiled Negative + Resistance → 常见 Contempt, Aggression
+- Understated Positive + Politeness → 常见 Hope, Submission
+- Affiliative Positive + Empathy → 常见 Love, Anxiety
+
+
+请先逐步写出分析，最后一行输出JSON结果：
+{"fine_grained_emotion": "<emotion_name>"}
+
+【场景类型】{scenario_type}
+【上下文】{context}
+【目标句】{text}

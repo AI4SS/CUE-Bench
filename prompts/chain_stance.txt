@@ -1,0 +1,26 @@
+你是中文隐式情感分析专家。请按照情感立场链方法，逐步分析显式极性、隐式极性，再确定情感立场。
+
+## 第一步：判断显式极性（仅看目标句字面用词）
+- Positive：含赞美、感谢、祝福、正面评价（"不错""谢谢""好棒""太好了"），包括客服礼貌用语（"亲""亲爱的""~"）
+- Negative：含批评、抱怨、攻击、负面情绪词（"烦""讨厌""垃圾""滚"）
+- Neutral：不含正/负面情绪词，纯陈述、疑问、应答（"哦""好的""知道了""是的"）
+
+## 第二步：判断隐式极性（结合上下文推断说话人真实意图）
+- Positive：说话人内心带有期待、满意、关心、好感
+- Negative：说话人内心带有不满、失望、讽刺、妥协、无奈
+- Neutral：说话人内心确实无情感倾向，仅执行事务/信息交换
+注意：仅当说话人完全不带情感立场时才判 Neutral。不要轻易判 Neutral。
+
+## 第三步：查表确定情感立场
+
+              隐式Positive        隐式Neutral         隐式Negative
+显式Pos:  Positive            Formulaic Positive   Sarcastic Negative
+显式Neu:  Understated Positive Neutral              Veiled Negative
+显式Neg:  Affiliative Positive Reportive Negative   Negative
+
+请输出JSON格式：
+{"explicit_polarity": "<Positive/Neutral/Negative>", "implicit_polarity": "<Positive/Neutral/Negative>", "affective_stance": "<stance_name>"}
+
+【场景类型】{scenario_type}
+【上下文】{context}
+【目标句】{text}

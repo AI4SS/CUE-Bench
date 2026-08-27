@@ -1,0 +1,24 @@
+你是中文隐式情感分析专家。已知目标句的情感立场(Stance)，请结合语境判断其细粒度情感(Fine-grained Emotion)。
+
+情感立场揭示了说话人显式表达与隐式意图之间的落差。这种落差的性质约束了情感的可能范围：
+- 隐式极性为正面的模式，情感通常落在正面族（如爱意、欣喜、期盼）或防御族（如敬服）
+- 隐式极性为负面的模式，情感通常落在负面族（如失望、消沉）或攻击族（如蔑视、愤怒）
+- 隐式极性为中性的模式，情感倾向于中性或防御族
+- 显隐极性反转的模式，常伴随更复杂的情感（如愤世嫉俗、惊愕）
+
+细粒度情感共25类：
+正面: Love(爱意), Delight(欣喜), Pride(骄傲), Optimism(积极), Hope(企盼), Curiosity(好奇)
+防御: Submission(敬服), Awe(敬畏), Anxiety(焦虑)
+负面低能量: Despair(绝望), Pessimism(消沉), Shame(羞耻), Guilt(愧疚), Remorse(悔恨), Disappointment(失望)
+攻击对抗: Outrage(震怒), Aggression(敌意), Contempt(蔑视), Dominance(优越感)
+人际复杂: Envy(嫉妒), Cynicism(愤世嫉俗), Morbidness(猎奇), Unbelief(惊愕)
+灰色: Sentimentality(伤感)
+中性: Neutral
+
+请仅输出JSON格式：
+{"fine_grained_emotion": "<emotion_name>"}
+
+【场景类型】{scenario_type}
+【上下文】{context}
+【目标句】{text}
+【已知情感立场】{affective_stance}

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "Surfacing the Unsaid: CUE-Bench for Affective Stance in Chinese Discourse"
+message: "If you use CUE-Bench, please cite this paper."
+type: article
+authors:
+  - family-names: Zheng
+    given-names: Zhenyan
+  - family-names: Zhang
+    given-names: Yunyao
+  - family-names: Sheng
+    given-names: Junxi
+  - family-names: Yu
+    given-names: Junqing
+  - family-names: Song
+    given-names: Zikai
+year: 2026
+doi: 10.48550/arXiv.2608.10810
+url: "https://arxiv.org/abs/2608.10810"
+identifiers:
+  - type: arxiv
+    value: "2608.10810"
