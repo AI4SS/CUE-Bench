@@ -27,7 +27,7 @@ This repository contains the official data and evaluation resources for **CUE-Be
 - **A benchmark for unsaid affect in Chinese discourse.** CUE-Bench focuses on cases where literal wording and intended affect diverge, such as irony, politeness, understatement, veiled negativity, and formulaic expression.
 - **A structured Explicit-Implicit Stance Matrix.** We operationalize affective stance as the interaction between surface expression and implied affect, yielding nine human-interpretable stance categories.
 - **Multi-level supervision for pragmatic affect understanding.** Each instance is annotated with explicit/implicit affect, Affective Stance, Pragmatic Intent, and Fine-grained Emotion.
-- **A matrix-guided reasoning framework.** Incorporating Affective Stance improves fine-grained emotion recognition by **3.5** percentage points and pragmatic intent detection by **7.8** percentage points over strong baselines.
+- **A matrix-guided reasoning framework.** Incorporating Affective Stance improves fine-grained emotion recognition by **3.1** percentage points and pragmatic intent detection by **8.1** percentage points over strong baselines.
 - **Broader coverage of stance phenomena.** The refined release improves coverage of rare stance categories, especially news-style **Reportive Negative** cases.
 
 ---
