@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/badge/arXiv-2608.10810-b31b1b?style=flat-square">
   </a>
   <a href="data/v3.1_final/cuebench_v3.1_full.jsonl">
-    <img src="https://img.shields.io/badge/Dataset-v3.1-green?style=flat-square">
+    <img src="https://img.shields.io/badge/Dataset-Refined%20Release-green?style=flat-square">
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square">
@@ -13,6 +13,8 @@
 </p>
 
 This repository contains the official data and evaluation resources for **CUE-Bench**, a Chinese discourse benchmark for understanding **unsaid emotion** through **Affective Stance**.
+
+![CUE-Bench Overview](docs/cuebench_overview.png)
 
 > **Abstract.** Emotion understanding in discourse requires reasoning beyond surface sentiment, since speakers often convey affect through indirect, implicit, polite, ironic, or deliberately mismatched expressions. Existing emotion benchmarks mainly annotate surface polarity or final emotion categories, while lacking a structured account of how explicit expression, implicit affect, pragmatic intent, and fine-grained emotion interact. To address this gap, we introduce **CUE-Bench**, a Chinese Unsaid Emotion benchmark that centers on **Affective Stance** and covers diverse communicative scenarios. CUE-Bench constructs nine human-interpretable affective stances from Explicit-Implicit polarity interaction and further provides intent and fine-grained emotion annotations for structured affective inference.
 
@@ -24,7 +26,7 @@ This repository contains the official data and evaluation resources for **CUE-Be
 - **A structured Explicit-Implicit Stance Matrix.** We operationalize affective stance as the interaction between surface expression and implied affect, yielding nine human-interpretable stance categories.
 - **Multi-level supervision for pragmatic affect understanding.** Each instance is annotated with explicit/implicit affect, Affective Stance, Pragmatic Intent, and Fine-grained Emotion.
 - **A matrix-guided reasoning framework.** Incorporating Affective Stance improves fine-grained emotion recognition by **3.5** percentage points and pragmatic intent detection by **7.8** percentage points over strong baselines.
-- **A refined v3.1 release.** The current release includes a more complete and balanced data version, with additional support for the Reportive Negative category.
+- **Broader coverage of stance phenomena.** The refined release improves coverage of rare stance categories, especially news-style **Reportive Negative** cases.
 
 ---
 
@@ -45,7 +47,7 @@ CUE-Bench/
 
 ## Dataset Versions
 
-### v3: Experimental Split
+### Paper Experimental Split
 
 `data/v3_experiment_split/` contains the split used for the paper experiments.
 
@@ -55,9 +57,9 @@ CUE-Bench/
 | Dev | `dev.jsonl` | 5,162 |
 | Test | `test.jsonl` | 5,163 |
 
-### v3.1: Final Release
+### Refined Full Release
 
-`data/v3.1_final/` contains the refined full release. The source-specific files share the same `sample_id` values as `cuebench_v3.1_full.jsonl`.
+`data/v3.1_final/` contains the refined full release prepared after the rebuttal-stage revisions. The source-specific files share the same `sample_id` values as `cuebench_v3.1_full.jsonl`.
 
 | File | Description | #Samples |
 |---|---|---:|
@@ -96,6 +98,25 @@ Each JSONL record contains the following fields:
 | `pragmatic_intent` | Pragmatic Intent label. |
 | `fine_grained_emotion` | Fine-grained Emotion label. |
 | `quality_tier` | Annotation source/mode in the v3 experimental split. |
+
+Example record:
+
+```json
+{
+  "sample_id": "cue_example_000001",
+  "text": "你可真会安排，周六开会最让人开心了。",
+  "context": "[工作群聊] 团队原本已经连续加班多天，负责人临时通知周六继续开会。",
+  "scenario_type": "group_chat",
+  "speaker_role": "team_member",
+  "explicit_polarity": "Positive",
+  "explicit_emotion": "Joy",
+  "implicit_polarity": "Negative",
+  "implicit_emotion": "Anger",
+  "affective_stance": "Sarcastic Negative",
+  "pragmatic_intent": "Irony",
+  "fine_grained_emotion": "Contempt"
+}
+```
 
 ---
 
