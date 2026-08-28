@@ -1,6 +1,9 @@
 # Surfacing the Unsaid: CUE-Bench for Affective Stance in Chinese Discourse
 
 <p align="center">
+  <a href="https://ai4ss.github.io/CUE-Bench/">
+    <img src="https://img.shields.io/badge/Project-Page-blue?style=flat-square">
+  </a>
   <a href="https://arxiv.org/abs/2608.10810">
     <img src="https://img.shields.io/badge/arXiv-2608.10810-b31b1b?style=flat-square">
   </a>

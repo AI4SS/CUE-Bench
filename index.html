@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CUE-Bench: Affective Stance in Chinese Discourse</title>
+  <meta name="description" content="CUE-Bench is a Chinese discourse benchmark for unsaid emotion understanding through Affective Stance and the Explicit-Implicit Stance Matrix.">
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #5f6b7a;
+      --line: #d9e0ea;
+      --soft: #f6f8fb;
+      --accent: #2f6f73;
+      --accent-dark: #1d5559;
+      --gold: #d58b26;
+      --green: #14804a;
+      --red: #b42318;
+      --shadow: 0 18px 45px rgba(31, 41, 55, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.62;
+    }
+
+    a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      width: min(1080px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 42px 0 56px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 16px 0 22px;
+    }
+
+    .venue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent-dark);
+      background: var(--soft);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 18px auto 10px;
+      max-width: 980px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0 auto 16px;
+      max-width: 880px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .authors {
+      margin: 20px auto 8px;
+      max-width: 960px;
+      font-size: 18px;
+    }
+
+    .affiliation {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 28px 0 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 750;
+      box-shadow: 0 8px 16px rgba(47, 111, 115, 0.18);
+    }
+
+    .button:hover {
+      background: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      color: var(--accent-dark);
+      background: #e8f2f2;
+      box-shadow: none;
+    }
+
+    .figure-wrap {
+      margin: 34px auto 22px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .figure-wrap img {
+      display: block;
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .image-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      padding: 14px;
+      box-shadow: 0 12px 28px rgba(31, 41, 55, 0.07);
+    }
+
+    .image-card img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      background: var(--soft);
+    }
+
+    .image-card b {
+      display: block;
+      margin: 11px 0 4px;
+      font-size: 16px;
+    }
+
+    .image-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .caption {
+      max-width: 900px;
+      margin: 13px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    section {
+      margin: 44px 0 0;
+      padding-top: 6px;
+    }
+
+    h2 {
+      margin: 0 0 13px;
+      font-size: 28px;
+      line-height: 1.18;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      font-size: 20px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat, .feature {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+      background: var(--soft);
+    }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent-dark);
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .stat span, .feature p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .feature b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 17px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 15px;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--soft);
+      font-weight: 800;
+    }
+
+    td.num, th.num {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .gain {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #eef6f6;
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .matrix td, .matrix th {
+      text-align: center;
+    }
+
+    .matrix td {
+      font-weight: 700;
+    }
+
+    .pos { background: #eef8ed; color: #246b33; }
+    .neu { background: #fff8e9; color: #845810; }
+    .neg { background: #fff0ee; color: #9b2f23; }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #0f172a;
+      color: #e5eefb;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        width: min(100% - 24px, 1080px);
+        padding-top: 28px;
+      }
+
+      .grid, .two-col, .image-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .figure-wrap {
+        padding: 10px;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="venue">EMNLP 2026</div>
+      <h1>Surfacing the Unsaid: CUE-Bench for Affective Stance in Chinese Discourse</h1>
+      <p class="subtitle">A Chinese discourse benchmark for understanding unsaid emotion through the Explicit-Implicit Stance Matrix.</p>
+      <div class="authors">
+        Zhenyan Zheng<sup>*</sup>,
+        Yunyao Zhang<sup>*</sup>,
+        Junxi Sheng,
+        Junqing Yu,
+        Zikai Song<sup>&dagger;</sup>
+      </div>
+      <div class="affiliation">
+        Huazhong University of Science and Technology<br>
+        <sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>&dagger;</sup>Corresponding author
+      </div>
+      <nav class="links" aria-label="Project links">
+        <a class="button" href="https://arxiv.org/abs/2608.10810">Paper</a>
+        <a class="button" href="docs/paper.pdf">PDF</a>
+        <a class="button" href="https://github.com/AI4SS/CUE-Bench">Code</a>
+        <a class="button secondary" href="https://github.com/AI4SS/CUE-Bench/tree/main/data/refined_full_release">Dataset</a>
+        <a class="button secondary" href="#bibtex">BibTeX</a>
+      </nav>
+    </header>
+
+    <div class="figure-wrap">
+      <img src="assets/fig2_pipeline_cropped.png" alt="Overview of CUE-Bench and the Explicit-Implicit Stance Matrix">
+      <p class="caption">
+        CUE-Bench links what is expressed with what remains unsaid. The Explicit-Implicit Stance Matrix maps surface affect and implied affect into nine interpretable Affective Stances, which guide pragmatic intent and fine-grained emotion inference.
+      </p>
+    </div>
+
+    <section id="abstract">
+      <h2>Abstract</h2>
+      <p>
+        Emotion understanding in discourse requires reasoning beyond surface sentiment, since speakers often convey affect through indirect, implicit, polite, ironic, or deliberately mismatched expressions. Existing emotion benchmarks mainly annotate surface polarity or final emotion categories, while lacking a structured account of how explicit expression, implicit affect, pragmatic intent, and fine-grained emotion interact.
+      </p>
+      <p>
+        To address this gap, we introduce <b>CUE-Bench</b>, a <b>C</b>hinese <b>U</b>nsaid <b>E</b>motion benchmark centered on <b>Affective Stance</b>. CUE-Bench constructs nine human-interpretable affective stances from Explicit-Implicit polarity interaction and further provides intent and fine-grained emotion annotations for structured affective inference.
+      </p>
+    </section>
+
+    <section id="highlights">
+      <h2>Highlights</h2>
+      <div class="grid">
+        <article class="feature">
+          <b>Unsaid Emotion</b>
+          <p>Targets cases where literal wording and intended affect diverge, including irony, politeness, understatement, veiled negativity, and formulaic expression.</p>
+        </article>
+        <article class="feature">
+          <b>Explicit-Implicit Stance Matrix</b>
+          <p>Models affective stance as the interaction between surface expression and implied affect, producing nine interpretable stance categories.</p>
+        </article>
+        <article class="feature">
+          <b>Matrix-Guided Reasoning</b>
+          <p>Uses Affective Stance as an intermediate scaffold for pragmatic intent understanding and fine-grained emotion classification.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="matrix">
+      <h2>Explicit-Implicit Stance Matrix</h2>
+      <p class="lead">
+        The matrix organizes the relation between surface expression and implicit affect. It is not a replacement for fine-grained emotion labels, but an interpretable scaffold for reasoning from what is expressed to what is meant.
+      </p>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Explicit \ Implicit</th>
+            <th>Positive</th>
+            <th>Neutral</th>
+            <th>Negative</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Positive</th>
+            <td class="pos">Aligned Positive</td>
+            <td class="neu">Formulaic Positive</td>
+            <td class="neg">Sarcastic Negative</td>
+          </tr>
+          <tr>
+            <th>Neutral</th>
+            <td class="pos">Understated Positive</td>
+            <td class="neu">Neutral</td>
+            <td class="neg">Veiled Negative</td>
+          </tr>
+          <tr>
+            <th>Negative</th>
+            <td class="pos">Affiliative Positive</td>
+            <td class="neu">Reportive Negative</td>
+            <td class="neg">Aligned Negative</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="figure-wrap">
+      <img src="assets/fig1_teaser_cropped.png" alt="Affective Stance teaser example">
+      <p class="caption">
+        A simple example of Affective Stance: the same utterance can express one affective signal on the surface while implying another affective meaning in context.
+      </p>
+    </div>
+
+    <section id="dataset">
+      <h2>Dataset</h2>
+      <p class="lead">
+        CUE-Bench provides multi-level supervision for Chinese discourse emotion understanding, spanning explicit affect, implicit affect, Affective Stance, Pragmatic Intent, and Fine-grained Emotion.
+      </p>
+      <div class="grid">
+        <div class="stat"><strong>52,882</strong><span>instances in the refined full release</span></div>
+        <div class="stat"><strong>9</strong><span>Affective Stance categories</span></div>
+        <div class="stat"><strong>3</strong><span>connected evaluation tasks</span></div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Release</th>
+            <th>Description</th>
+            <th class="num">Samples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Paper Experimental Split</td>
+            <td>Train/dev/test split used for the paper experiments.</td>
+            <td class="num">47,010</td>
+          </tr>
+          <tr>
+            <td>Refined Full Release</td>
+            <td>Final public release with broader coverage of rare stance phenomena.</td>
+            <td class="num">52,882</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Task Suite</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Target</th>
+            <th>What It Evaluates</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Affective Stance Recognition</td>
+            <td>9 stance labels</td>
+            <td>Whether models can identify the relation between surface affect and implied affect.</td>
+          </tr>
+          <tr>
+            <td>Pragmatic Intent Understanding</td>
+            <td>8 intent labels</td>
+            <td>Whether models understand communicative strategies such as irony, politeness, suppression, and resistance.</td>
+          </tr>
+          <tr>
+            <td>Fine-grained Emotion Classification</td>
+            <td>25 emotion labels</td>
+            <td>Whether models can recover the specific affective state conveyed in context.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="results">
+      <h2>Experimental Results</h2>
+      <p class="lead">
+        Across strong LLM baselines, incorporating Affective Stance improves downstream affective inference, especially for pragmatic intent understanding.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Best Baseline</th>
+            <th>Matrix-Guided CoT</th>
+            <th>Overall Gain</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pragmatic Intent Understanding</td>
+            <td>Direct / Few-shot / CoT</td>
+            <td>Explicit-Implicit stance guided reasoning</td>
+            <td class="gain">+8.1 percentage points</td>
+          </tr>
+          <tr>
+            <td>Fine-grained Emotion Classification</td>
+            <td>Direct / Few-shot / CoT</td>
+            <td>Explicit-Implicit stance guided reasoning</td>
+            <td class="gain">+3.1 percentage points</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Representative Model Results</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Affective Stance W-F1</th>
+            <th>Pragmatic Intent W-F1</th>
+            <th>Fine-grained Emotion W-F1</th>
+            <th>Average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag">DeepSeek-V4-Flash</span></td>
+            <td>0.527</td>
+            <td>0.465</td>
+            <td>0.327</td>
+            <td class="gain">0.402</td>
+          </tr>
+          <tr>
+            <td><span class="tag">LLaMA-4-Maverick</span></td>
+            <td>0.511</td>
+            <td>0.452</td>
+            <td>0.331</td>
+            <td class="gain">0.393</td>
+          </tr>
+          <tr>
+            <td><span class="tag">GLM-5.1</span></td>
+            <td>0.552</td>
+            <td>0.450</td>
+            <td>0.333</td>
+            <td class="gain">0.405</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">
+        Gains summarize improvements over strong prompting baselines in the paper. Full model-level results are reported in the paper.
+      </p>
+    </section>
+
+    <section id="usage">
+      <h2>Usage</h2>
+      <div class="two-col">
+        <div>
+          <h3>Load the Dataset</h3>
+          <pre><code>git clone https://github.com/AI4SS/CUE-Bench.git
+cd CUE-Bench</code></pre>
+
+          <h3>Run Evaluation</h3>
+          <pre><code>pip install -r requirements.txt
+python code/llm_evaluate.py \
+  --model gpt-4o-mini \
+  --task stance \
+  --method direct \
+  --shot few</code></pre>
+        </div>
+        <div>
+          <h3>Data Format</h3>
+          <pre><code>{
+  "text": "你可真会安排，周六开会最让人开心了。",
+  "context": "[工作群聊] 团队连续加班多天，负责人临时通知周六继续开会。",
+  "explicit_polarity": "Positive",
+  "implicit_polarity": "Negative",
+  "affective_stance": "Sarcastic Negative",
+  "pragmatic_intent": "Irony",
+  "fine_grained_emotion": "Contempt"
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="bibtex">
+      <h2>BibTeX</h2>
+      <pre><code>@misc{zheng2026surfacingunsaidcuebenchaffective,
+  title = {Surfacing the Unsaid: CUE-Bench for Affective Stance in Chinese Discourse},
+  author = {Zhenyan Zheng and Yunyao Zhang and Junxi Sheng and Junqing Yu and Zikai Song},
+  year = {2026},
+  eprint = {2608.10810},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CL},
+  url = {https://arxiv.org/abs/2608.10810}
+}</code></pre>
+    </section>
+
+    <footer>
+      This website follows the style of academic project pages such as ReasonMap and Nerfies.
+    </footer>
+  </main>
+</body>
+</html>
